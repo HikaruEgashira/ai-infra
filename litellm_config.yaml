@@ -24,11 +24,6 @@ model_list:
       model: cerebras/*
       api_key: os.environ/CEREBRAS_API_KEY
 
-  - model_name: qwen3-32b
-    litellm_params:
-      model: cerebras/qwen-3-32b
-      api_key: os.environ/CEREBRAS_API_KEY
-
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
 

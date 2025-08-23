@@ -14,12 +14,26 @@ model_list:
       model: gemini/*
       api_key: os.environ/GEMINI_API_KEY
 
+  - model_name: openrouter/*
+    litellm_params:
+      model: openrouter/*
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: cerebras/*
+    litellm_params:
+      model: cerebras/*
+      api_key: os.environ/CEREBRAS_API_KEY
+
+  - model_name: qwen3-32b
+    litellm_params:
+      model: cerebras/qwen-3-32b
+      api_key: os.environ/CEREBRAS_API_KEY
 
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
 
 litellm_settings:
-  # drop_params: true
+  drop_params: true
   success_callback: ["langfuse"]
   failure_callback: ["langfuse"]
   langfuse_public_key: os.environ/LANGFUSE_PUBLIC_KEY

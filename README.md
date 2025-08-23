@@ -56,6 +56,7 @@ graph TB
 dotenvx set OPENAI_API_KEY your_openai_key
 dotenvx set ANTHROPIC_API_KEY your_anthropic_key
 dotenvx set GEMINI_API_KEY your_gemini_key
+dotenvx set OPENROUTER_API_KEY your_openrouter_key
 dotenvx set LITELLM_MASTER_KEY $(openssl rand -hex 32)
 
 dotenvx run -- docker compose up -d

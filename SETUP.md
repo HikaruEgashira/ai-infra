@@ -25,6 +25,7 @@ dotenvx set OPENAI_API_KEY your_openai_key
 dotenvx set ANTHROPIC_API_KEY your_anthropic_key  
 dotenvx set GEMINI_API_KEY your_gemini_key
 dotenvx set LITELLM_MASTER_KEY your_generated_master_key
+dotenvx set CEREBRAS_API_KEY y
 ```
 
 ### 1.3 初回起動

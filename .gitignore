@@ -12,7 +12,3 @@ __pycache__/
 
 # Claude
 .claude/
-
-# FastMCP
-fastmcp_config.yaml
-fastmcp_proxy/

@@ -1,0 +1,26 @@
+# FastMCP Proxy Configuration
+# This file defines backend MCP servers that the proxy can connect to
+
+# MCP Server Configuration (Standard MCP format)
+mcpServers:
+  # Example: Add your backend MCP servers here
+  #
+  # local-server:
+  #   command: "python"
+  #   args: ["./path/to/your/server.py"]
+  #
+  # remote-server:
+  #   url: "https://example.com/mcp"
+  #   transport: "http"
+
+# Proxy Settings
+proxy:
+  host: "0.0.0.0"
+  port: 8000
+  path: "/mcp"
+  transport: "http"  # or "sse"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "json"

@@ -28,7 +28,7 @@ general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
 
 litellm_settings:
-  callbacks: ["callbacks.codex_compatibility.request_validator"]
+  callbacks: ["callbacks.codex_compatibility.request_validator", "callbacks.message_classifier.message_classifier"]
   drop_params: false
   allowed_fails: 3
   num_retries: 3

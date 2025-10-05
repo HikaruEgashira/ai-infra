@@ -5,6 +5,7 @@ services:
       - "4000:4000"
     volumes:
       - ./litellm_config.yaml:/app/config.yaml
+      - ./custom_callbacks.py:/app/custom_callbacks.py
       - ./logs:/app/logs
     environment:
       - STORE_MODEL_IN_DB=True
@@ -16,6 +17,7 @@ services:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - CEREBRAS_API_KEY=${CEREBRAS_API_KEY}
+      - PYTHONPATH=/app
     command: ["--config", "/app/config.yaml"]
     depends_on:
       redis:
@@ -88,10 +90,10 @@ services:
     restart: always
     depends_on: *langfuse-depends-on
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       <<: *langfuse-worker-env
-      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_URL: http://localhost:3001
       NEXTAUTH_SECRET: ${LANGFUSE_NEXTAUTH_SECRET:-mysecret}
       LANGFUSE_INIT_ORG_ID: ${LANGFUSE_INIT_ORG_ID:-}
       LANGFUSE_INIT_ORG_NAME: ${LANGFUSE_INIT_ORG_NAME:-}

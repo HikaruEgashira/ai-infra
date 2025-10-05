@@ -17,7 +17,7 @@ graph TB
     end
     
     subgraph "Monitoring & Observability"
-        LANGFUSE[Langfuse :3000]
+        LANGFUSE[Langfuse :3001]
     end
     
     subgraph "External APIs"
@@ -45,7 +45,7 @@ graph TB
 | LiteLLM | 4000 | LLMプロキシサーバー | http://localhost:4000 |
 | PostgreSQL | 5432 | メタデータストレージ | - |
 | Redis | 6379 | キャッシュストレージ | - |
-| Langfuse Web | 3000 | LLM観測プラットフォーム | http://localhost:3000 |
+| Langfuse Web | 3001 | LLM観測プラットフォーム | http://localhost:3001 |
 | ClickHouse | 8123 | 分析データベース | - |
 | MinIO | 9190 | オブジェクトストレージ | - |
 

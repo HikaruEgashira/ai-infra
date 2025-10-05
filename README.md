@@ -9,24 +9,29 @@ graph TB
     subgraph "User Interface"
         UI[User/API Client]
     end
-    
+
+    subgraph "MCP Gateway"
+        FASTMCP[FastMCP Proxy :8000]
+    end
+
     subgraph "LiteLLM Stack"
         LLM[LiteLLM Proxy :4000]
         REDIS[Redis Cache :6379]
         POSTGRES[PostgreSQL :5432]
     end
-    
+
     subgraph "Monitoring & Observability"
         LANGFUSE[Langfuse :3001]
     end
-    
+
     subgraph "External APIs"
         OPENAI[OpenAI API]
         ANTHROPIC[Anthropic API]
         GEMINI[Gemini API]
         OPENROUTER[OpenRouter API]
     end
-    
+
+    UI --> FASTMCP
     UI --> LLM
     LLM --> REDIS
     LLM --> POSTGRES
@@ -34,7 +39,7 @@ graph TB
     LLM --> ANTHROPIC
     LLM --> GEMINI
     LLM --> OPENROUTER
-    
+
     LLM --> LANGFUSE
 ```
 
@@ -42,6 +47,7 @@ graph TB
 
 | サービス | ポート | 説明 | URL |
 |---------|--------|------|-----|
+| FastMCP Proxy | 8000 | MCPプロキシゲートウェイ | http://localhost:8000/mcp |
 | LiteLLM | 4000 | LLMプロキシサーバー | http://localhost:4000 |
 | PostgreSQL | 5432 | メタデータストレージ | - |
 | Redis | 6379 | キャッシュストレージ | - |
@@ -60,6 +66,41 @@ dotenvx set OPENROUTER_API_KEY your_openrouter_key
 dotenvx set LITELLM_MASTER_KEY $(openssl rand -hex 32)
 
 dotenvx run -- docker compose up -d
+```
+
+## FastMCP Proxy
+
+FastMCP Proxyは、Model Context Protocol (MCP)サーバーへのゲートウェイとして機能します。
+
+### 特徴
+- HTTP/SSE transportサポート
+- 複数のMCPサーバーを統合
+- LiteLLMとの統合準備
+- FastMCP 2.0ベース
+
+### 使用方法
+
+```bash
+# FastMCP Proxyにアクセス
+curl http://localhost:8000/mcp
+
+# Python Clientで接続
+from fastmcp import Client
+
+async with Client("http://localhost:8000/mcp") as client:
+    tools = await client.list_tools()
+    print(tools)
+```
+
+### バックエンドサーバーの追加
+
+`fastmcp_config.yaml`を編集してMCPサーバーを追加:
+
+```yaml
+mcpServers:
+  my-server:
+    command: "python"
+    args: ["./path/to/server.py"]
 ```
 
 ## 詳細なセットアップ

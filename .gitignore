@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# Environment
+.env
+.env.keys
+
+# Claude
+.claude/
+
+# FastMCP
+fastmcp_config.yaml
+fastmcp_proxy/

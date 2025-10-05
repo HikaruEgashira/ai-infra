@@ -48,7 +48,7 @@ graph TB
 | サービス | ポート | 説明 | URL |
 |---------|--------|------|-----|
 | FastMCP Proxy | 8000 | MCPプロキシゲートウェイ | http://localhost:8000/mcp |
-| LiteLLM | 4000 | LLMプロキシサーバー | http://localhost:4000 |
+| LiteLLM Proxy | 4000 | LLMプロキシサーバー | http://localhost:4000 |
 | PostgreSQL | 5432 | メタデータストレージ | - |
 | Redis | 6379 | キャッシュストレージ | - |
 | Langfuse Web | 3001 | LLM観測プラットフォーム | http://localhost:3001 |

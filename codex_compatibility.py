@@ -1,5 +1,12 @@
 """
-Custom callbacks to fix invalid request parameters
+GPT-5 Codex compatibility layer for LiteLLM
+
+Fixes request parameters that are incompatible with gpt-5-codex model:
+- Invalid max_tokens values (0 or negative)
+- Unsupported stream_options.include_usage parameter
+- Tools format conversion (nested {type, function} to flat {type, name, description, parameters})
+
+This callback is used by clients like crush that send requests to gpt-5-codex.
 """
 from litellm.integrations.custom_logger import CustomLogger
 import litellm
@@ -110,5 +117,5 @@ class RequestValidator(CustomLogger):
                 del kwargs["tools"]
 
 
-# Create singleton instance
+# Create singleton instance for LiteLLM to import
 request_validator = RequestValidator()

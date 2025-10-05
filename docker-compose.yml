@@ -5,7 +5,7 @@ services:
       - "4000:4000"
     volumes:
       - ./litellm_config.yaml:/app/config.yaml
-      - ./custom_callbacks.py:/app/custom_callbacks.py
+      - ./codex_compatibility.py:/app/codex_compatibility.py
       - ./logs:/app/logs
     environment:
       - STORE_MODEL_IN_DB=True

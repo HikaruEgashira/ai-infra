@@ -68,41 +68,6 @@ dotenvx set LITELLM_MASTER_KEY $(openssl rand -hex 32)
 dotenvx run -- docker compose up -d
 ```
 
-## FastMCP Proxy
-
-FastMCP Proxyは、Model Context Protocol (MCP)サーバーへのゲートウェイとして機能します。
-
-### 特徴
-- HTTP/SSE transportサポート
-- 複数のMCPサーバーを統合
-- LiteLLMとの統合準備
-- FastMCP 2.0ベース
-
-### 使用方法
-
-```bash
-# FastMCP Proxyにアクセス
-curl http://localhost:8000/mcp
-
-# Python Clientで接続
-from fastmcp import Client
-
-async with Client("http://localhost:8000/mcp") as client:
-    tools = await client.list_tools()
-    print(tools)
-```
-
-### バックエンドサーバーの追加
-
-`fastmcp_config.yaml`を編集してMCPサーバーを追加:
-
-```yaml
-mcpServers:
-  my-server:
-    command: "python"
-    args: ["./path/to/server.py"]
-```
-
 ## 詳細なセットアップ
 
 初期設定やLangfuseの設定方法など、詳細な手順については [SETUP.md](SETUP.md) を参照してください。

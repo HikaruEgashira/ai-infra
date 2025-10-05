@@ -1,4 +1,15 @@
 services:
+  fastmcp-proxy:
+    build:
+      context: ./fastmcp_proxy
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./fastmcp_config.yaml:/app/config.yaml
+      - ./fastmcp_proxy:/app
+    restart: unless-stopped
+
   litellm:
     image: ghcr.io/berriai/litellm:main-latest
     ports:
